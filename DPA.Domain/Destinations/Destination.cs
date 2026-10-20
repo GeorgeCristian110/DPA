@@ -1,4 +1,4 @@
-namespace DPA.Domain.Entities;
+namespace DPA.Domain.Destinations;
 
 public class Destination
 {

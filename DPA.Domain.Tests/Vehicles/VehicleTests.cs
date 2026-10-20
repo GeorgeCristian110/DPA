@@ -1,6 +1,6 @@
-using DPA.Domain.Entities;
+using DPA.Domain.Vehicles;
 
-namespace DPA.Domain.Tests.Entities;
+namespace DPA.Domain.Tests.Vehicles;
 
 public class VehicleTests
 {
