@@ -1,6 +1,6 @@
 namespace DPA.Domain.Entities;
 
-public class Trailer
+public class Vehicle
 {
     public Guid Id { get; private set; }
     public decimal LengthM { get; private set; }
@@ -8,15 +8,15 @@ public class Trailer
     public decimal WidthM { get; private set; }
     public decimal HeightM { get; private set; }
     public decimal EmptyWeightKg { get; private set; }
-    public decimal KingpinToTandemM { get; private set; }
+    public decimal FrontToRearSupportM { get; private set; }
     public decimal EmptyCgXm { get; private set; }
-    public decimal KingpinOffsetM { get; private set; }
+    public decimal FrontSupportOffsetM { get; private set; }
     public decimal MaxPayloadKg { get; private set; }
     
     
-    public Trailer(decimal lengthM, string code, decimal widthM, decimal heightM, 
-        decimal emptyWeightKg, decimal kingpinToTandemM, decimal emptyCgXm, 
-        decimal kingpinOffsetM, decimal maxPayloadKg)
+    public Vehicle(decimal lengthM, string code, decimal widthM, decimal heightM, 
+        decimal emptyWeightKg, decimal frontToRearSupportM, decimal emptyCgXm, 
+        decimal frontSupportOffsetM, decimal maxPayloadKg)
     {
         if (lengthM <= 0)
         {
@@ -43,9 +43,9 @@ public class Trailer
             throw new ArgumentOutOfRangeException(nameof(emptyWeightKg), "Empty weight kg must be positive");
         }
 
-        if (kingpinToTandemM <= 0)
+        if (frontToRearSupportM <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(kingpinToTandemM), "KingpinToTandem must be positive");
+            throw new ArgumentOutOfRangeException(nameof(frontToRearSupportM), "FrontToRearSupportM must be positive");
         }
 
         if (emptyCgXm <= 0)
@@ -53,9 +53,9 @@ public class Trailer
             throw new ArgumentOutOfRangeException(nameof(emptyCgXm), "Empty cgXM must be positive");
         }
 
-        if (kingpinOffsetM <= 0)
+        if (frontSupportOffsetM <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(kingpinOffsetM), "KingpinOffsetM must be positive");
+            throw new ArgumentOutOfRangeException(nameof(frontSupportOffsetM), "FrontSupportOffsetM must be positive");
         }
 
         if (maxPayloadKg <= 0)
@@ -63,10 +63,10 @@ public class Trailer
             throw new ArgumentOutOfRangeException(nameof(maxPayloadKg), "Max payload kg must be positive");
         }
 
-        if (lengthM < kingpinToTandemM + kingpinOffsetM)
+        if (lengthM < frontToRearSupportM + frontSupportOffsetM)
         {
             throw new ArgumentException("Length must be at least the total of " +
-                                        "kingpinToTandemM and kingpinOffsetM.");
+                                        "FrontToRearSupportM and FrontSupportOffSetM.");
         }
         
         Id = Guid.NewGuid();
@@ -75,9 +75,9 @@ public class Trailer
         WidthM = widthM;
         HeightM = heightM;
         EmptyWeightKg = emptyWeightKg;
-        KingpinToTandemM = kingpinToTandemM;
+        FrontToRearSupportM = frontToRearSupportM;
         EmptyCgXm = emptyCgXm;
-        KingpinOffsetM = kingpinOffsetM;
+        FrontSupportOffsetM = frontSupportOffsetM;
         MaxPayloadKg = maxPayloadKg;
     }
 }
