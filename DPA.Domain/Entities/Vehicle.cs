@@ -13,11 +13,15 @@ public class Vehicle
     public decimal FrontSupportOffsetM { get; private set; }
     public decimal MaxPayloadKg { get; private set; }
     
+    public VehicleProfile Profile { get; private set; }
     
-    public Vehicle(decimal lengthM, string code, decimal widthM, decimal heightM, 
+    
+    public Vehicle( VehicleProfile profile, decimal lengthM, string code, decimal widthM, decimal heightM, 
         decimal emptyWeightKg, decimal frontToRearSupportM, decimal emptyCgXm, 
         decimal frontSupportOffsetM, decimal maxPayloadKg)
     {
+        ArgumentNullException.ThrowIfNull(profile);
+        
         if (lengthM <= 0)
         {
             throw new ArgumentOutOfRangeException(nameof(lengthM), "Length must be positive");
@@ -53,9 +57,11 @@ public class Vehicle
             throw new ArgumentOutOfRangeException(nameof(emptyCgXm), "Empty cgXM must be positive");
         }
 
-        if (frontSupportOffsetM <= 0)
+        if (frontSupportOffsetM < profile.MinFrontOffsetM || frontSupportOffsetM > profile.MaxFrontOffsetM)
         {
-            throw new ArgumentOutOfRangeException(nameof(frontSupportOffsetM), "FrontSupportOffsetM must be positive");
+            throw new ArgumentOutOfRangeException(nameof(frontSupportOffsetM), 
+                $"Front support for {profile.Name} must be between " +
+                $"{profile.MinFrontOffsetM} and {profile.MaxFrontOffsetM}m.");
         }
 
         if (maxPayloadKg <= 0)
@@ -79,5 +85,6 @@ public class Vehicle
         EmptyCgXm = emptyCgXm;
         FrontSupportOffsetM = frontSupportOffsetM;
         MaxPayloadKg = maxPayloadKg;
+        Profile = profile;
     }
 }

@@ -2,8 +2,11 @@ using DPA.Domain.Entities;
 
 namespace DPA.Domain.Tests.Entities;
 
-public class TrailerTests
+public class VehicleTests
 {
+    private readonly VehicleProfile _semiProfile = new("Semi-trailer",
+        0.5m, 2.0m);
+    
     [Fact]
     public void Constructor_ValidValues_CreatesTrailer()
     {
@@ -11,7 +14,7 @@ public class TrailerTests
         var code = "MM-09";
         
         //Act
-        var vehicle = new Vehicle(25.5m, code, 3.30m, 2.5m, 7000m,
+        var vehicle = new Vehicle(_semiProfile, 13.6m, code, 3.30m, 2.5m, 7000m,
             7.6m, 6.2m, 1m, 24500m);
         
         //Assert
@@ -25,7 +28,7 @@ public class TrailerTests
     public void Constructor_InvalidCode_ThrowsException(string? code)
     {
        Assert.Throws<ArgumentException>(() =>
-            new Vehicle(25.5m, code!, 3.30m, 2.5m, 7000m,
+            new Vehicle(_semiProfile, 2.2m, code!, 3.30m, 2.5m, 7000m,
             7.6m, 6.2m, 1m, 24500m));
     }
 
@@ -35,7 +38,7 @@ public class TrailerTests
     public void Constructor_InvalidLength_ThrowsException(decimal length)
     {
         Assert.Throws<ArgumentOutOfRangeException>(() =>
-            new Vehicle(length, "MM-01", 3.30m, 2.5m, 7000m,
+            new Vehicle(_semiProfile, length , "MM-01",3.30m, 2.5m, 7000m,
                 7.6m, 6.2m, 1m, 24500m));
     }
 }
