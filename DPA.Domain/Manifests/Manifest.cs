@@ -41,5 +41,5 @@ public class Manifest
         RequiredArrivalAt = requiredArrivalAt;
         Status = ManifestStatus.AwaitingPallets;
     }
-
+    
 }
