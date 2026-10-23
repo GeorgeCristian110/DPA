@@ -130,16 +130,16 @@ public class Manifest
         if (frontEdge < noseWall || rearEdge > rearDoors)
         {
             return Result.Failure(ErrorType.RuleViolation,
-                $"Pallet {cargoItem.PalletCode} it's out of boundaries at this position." +
+                $"Pallet {cargoItem.PalletCode} is out of boundaries at this position." +
                 $" Please try again on a new position. ");
         }
 
         if (leftEdge < leftWall || rightEdge > rightWall)
         {
             return Result.Failure(ErrorType.RuleViolation,
-                $"Pallet {cargoItem.PalletCode} stick out the past the sides " +
+                $"Pallet {cargoItem.PalletCode} sticks out past the sides" +
                 $" of the vehicle at this position." +
-                $" Please try again on a new position. ");
+                $" Please try again on a new position.");
         }
 
         var overlaps = _placements.Any(p =>
@@ -162,7 +162,7 @@ public class Manifest
         if (overlaps)
         {
             return Result.Failure(ErrorType.Conflict,
-                $"Pallet  {cargoItem.PalletCode} is overlapping with " +
+                $"Pallet {cargoItem.PalletCode} is overlapping with " +
                 $" another pallet at this position.");
         }
         
