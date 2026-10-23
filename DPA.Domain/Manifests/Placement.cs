@@ -1,3 +1,5 @@
+using DPA.Domain.Cargo;
+
 namespace DPA.Domain.Manifests;
 
  public class Placement
@@ -7,21 +9,25 @@ namespace DPA.Domain.Manifests;
     public decimal Xm { get; private set; }
     public decimal Ym { get; private set; }
     public bool IsRotated { get; private set; }
+    
+    public decimal WeightKg { get; private set; }
+    public decimal LengthM { get; private set; }
+    public decimal WidthM { get; private set; }
+    public decimal HeightM { get; private set; }
 
 
-    internal Placement(Guid cargoItemId, decimal xM, decimal yM, bool isRotated)
+    internal Placement(CargoItem cargoItem, decimal xM, decimal yM, bool isRotated)
     {
-        if (cargoItemId == Guid.Empty)
-        {
-            throw new ArgumentException("Cargo item id can not be empty",  nameof(cargoItemId));
-        }
-        
-        
-        
+       ArgumentNullException.ThrowIfNull(cargoItem);
+       
         Id = Guid.NewGuid();
-        CargoItemId = cargoItemId;
+        CargoItemId = cargoItem.Id;
         Xm = xM;
         Ym = yM;
+        WeightKg = cargoItem.WeightKg;
+        LengthM = cargoItem.LengthM;
+        WidthM = cargoItem.WidthM;
+        HeightM = cargoItem.HeightM;
         IsRotated = isRotated;
     }
 }
