@@ -75,7 +75,7 @@ public class CargoItem
         if (Status != CargoStatus.InStorage)
         {
             return Result.Failure(ErrorType.Conflict,
-                $"Cargo {PalletCode} cannot be moved to the doc, it is {Status}");
+                $"Cargo {PalletCode} cannot be moved to the dock, it is {Status}");
         }
         
         Status = CargoStatus.OnDock;
