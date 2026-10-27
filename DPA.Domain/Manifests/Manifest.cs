@@ -182,7 +182,7 @@ public class Manifest
     /// <returns>Success, or a Conflict or RuleViolation failure explaining
     /// which check failed.</returns>
     /// <exception cref="ArgumentException">When a pallet belongs to another manifest.</exception>
-    public Result MarkReadyToPlan(IReadOnlyList<CargoItem> pallets)
+    public Result MarkReadyToPlan(IReadOnlyCollection<CargoItem> pallets)
     {
         ArgumentNullException.ThrowIfNull(pallets);
 
