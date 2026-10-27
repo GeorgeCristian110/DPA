@@ -33,6 +33,10 @@ public class Manifest
 
     private readonly List<Rejection> _rejections = new();
     public IReadOnlyCollection<Rejection> Rejections => _rejections;
+    
+    #pragma warning disable CS8618
+    private Manifest() { }   // for EF Core
+    #pragma warning restore CS8618
 
     public Manifest(Guid destinationId, DateTimeOffset requiredArrivalAt)
     {

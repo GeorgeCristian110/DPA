@@ -6,6 +6,10 @@ public class VehicleProfile
     public string Name {get; private set;}
     public decimal MinFrontOffsetM  { get; private set; }
     public decimal MaxFrontOffsetM { get; private set; }
+    
+    #pragma warning disable CS8618
+    private VehicleProfile() { }   // for EF Core
+    #pragma warning restore CS8618
 
     public VehicleProfile(string name, decimal minFrontOffsetM, decimal maxFrontOffsetM)
     {

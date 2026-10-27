@@ -19,6 +19,10 @@ public class CargoItem
     //Date and time according to utc to remove daylight changes.
     public DateTimeOffset? ArrivedOnDockAt { get; private set; }
 
+    #pragma warning disable CS8618
+    private CargoItem() { }   // for EF Core
+    #pragma warning restore CS8618
+
     public CargoItem(string palletCode, decimal lengthM, decimal widthM, decimal heightM, 
         decimal weightKg, Stability stability)
     {

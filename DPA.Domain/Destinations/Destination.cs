@@ -8,6 +8,10 @@ public class Destination
     public string ZipCode { get; private set; }
     public string City { get; private set; }
     public TimeSpan DrivingTime { get; private set; }
+    
+    #pragma warning disable CS8618
+    private Destination() { }   // for EF Core
+    #pragma warning restore CS8618
 
     public Destination(string name, string address,
         string zipCode, string city, TimeSpan drivingTime)

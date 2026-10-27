@@ -15,6 +15,9 @@ namespace DPA.Domain.Manifests;
     public decimal WidthM { get; private set; }
     public decimal HeightM { get; private set; }
 
+    #pragma warning disable CS8618
+    private Placement() { }   // for EF Core
+    #pragma warning restore CS8618
 
     internal Placement(CargoItem cargoItem, decimal xM, decimal yM, bool isRotated)
     {

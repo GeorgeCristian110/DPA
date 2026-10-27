@@ -15,6 +15,9 @@ public class Vehicle
     
     public VehicleProfile Profile { get; private set; }
     
+    #pragma warning disable CS8618
+    private Vehicle() { }   // for EF Core
+    #pragma warning restore CS8618
     
     public Vehicle( VehicleProfile profile, decimal lengthM, string code, decimal widthM, decimal heightM, 
         decimal emptyWeightKg, decimal frontToRearSupportM, decimal emptyCgXm, 

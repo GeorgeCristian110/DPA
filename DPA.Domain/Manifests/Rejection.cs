@@ -8,6 +8,9 @@ public class Rejection
     public string RejectionMessage { get; private set; }
     public DateTimeOffset RejectionDate { get; private set; }
     
+    #pragma warning disable CS8618
+    private Rejection() { }   // for EF Core
+    #pragma warning restore CS8618
 
     internal Rejection(Guid rejectedByUserId, string rejectedByUserName, 
         string rejectionMessage,  DateTimeOffset now)
