@@ -18,7 +18,7 @@ public enum ManifestStatus
     UnderPlanning,
     
     /// <summary>
-    /// The planning is done and is sent to the loading area.
+    /// The plan is confirmed and the pallets are being moved to the loading area.
     /// </summary>
     SentToLoading,
     
