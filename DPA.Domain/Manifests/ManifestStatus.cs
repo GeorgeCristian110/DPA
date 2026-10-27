@@ -18,9 +18,15 @@ public enum ManifestStatus
     UnderPlanning,
     
     /// <summary>
-    /// The planning is done and is sent to loading awaiting approval of team lead.
+    /// The planning is done and is sent to the loading area.
     /// </summary>
     SentToLoading,
+    
+    /// <summary>
+    /// The cargo has arrived to the loading area and is
+    /// awaiting team lead approval of plan before loading.
+    /// </summary>
+    AwaitingConfirmation,
     
     /// <summary>
     /// The loading process has started according to the submitted plan.
