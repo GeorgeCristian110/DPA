@@ -173,7 +173,15 @@ public class Manifest
         return Result.Success();
     }
 
-
+    /// <summary>
+    /// Marks that all pallets are on the dock and the manifest is ready for a planner.
+    /// Fails with a Result when the manifest is not awaiting pallets, has no pallets,
+    /// or when some pallets are not on the dock yet.
+    /// </summary>
+    /// <param name="pallets">All pallets that belong to this manifest, loaded by the caller.</param>
+    /// <returns>Success, or a Conflict or RuleViolation failure explaining
+    /// which check failed.</returns>
+    /// <exception cref="ArgumentException">When a pallet belongs to another manifest.</exception>
     public Result MarkReadyToPlan(IReadOnlyList<CargoItem> pallets)
     {
         ArgumentNullException.ThrowIfNull(pallets);
@@ -209,6 +217,12 @@ public class Manifest
         return Result.Success();
     }
 
+    /// <summary>
+    /// Starts planning the manifest and assigns the vehicle it will be loaded on.
+    /// Fails with a Conflict if the manifest is not awaiting planning.
+    /// </summary>
+    /// <param name="vehicle">The vehicle the planner chose for this manifest.</param>
+    /// <returns>Success, or a Conflict failure with the manifest's current status.</returns>
     public Result StartPlanning(Vehicle vehicle)
     {
         ArgumentNullException.ThrowIfNull(vehicle);
