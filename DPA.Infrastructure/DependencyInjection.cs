@@ -1,4 +1,6 @@
+using DPA.Application.Manifests;
 using DPA.Infrastructure.Persistence;
+using DPA.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +13,8 @@ public static class DependencyInjection
     {
         services.AddDbContext<DpaDbContext>
             (options => options.UseNpgsql(connectionString));
+        
+        services.AddScoped<IManifestRepository, ManifestRepository>();
         
         return services;
     }
