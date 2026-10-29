@@ -1,3 +1,4 @@
+using DPA.Application;
 using DPA.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,9 @@ builder.Services.AddOpenApi();
 var connectionString = builder.Configuration.GetConnectionString("Dpa")
                        ?? throw new InvalidOperationException("Connection string 'Dpa' is missing.");
 
-builder.Services.AddInfrastructure(connectionString);
+builder.Services
+    .AddApplication()
+    .AddInfrastructure(connectionString);
 
 var app = builder.Build();
 
