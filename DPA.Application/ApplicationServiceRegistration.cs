@@ -3,13 +3,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DPA.Application;
 
-public static class DependencyInjection
+public static class ApplicationServiceRegistration
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddScoped<ISender, Sender>();
 
-        var assembly = typeof(DependencyInjection).Assembly;
+        var assembly = typeof(ApplicationServiceRegistration).Assembly;
 
         foreach (var type in assembly.GetTypes())
         {
