@@ -1,7 +1,6 @@
 using DPA.Application.Manifests;
 using DPA.Domain.Manifests;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace DPA.Infrastructure.Persistence.Repositories;
 
