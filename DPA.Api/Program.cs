@@ -1,4 +1,6 @@
 using DPA.Application;
+using DPA.Application.Manifests.GetManifests;
+using DPA.Application.Shared.Messaging;
 using DPA.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,12 @@ builder.Services
     .AddInfrastructure(connectionString);
 
 var app = builder.Build();
+
+app.MapGet("/manifests", async (ISender sender, CancellationToken cancellationToken) =>
+{
+    var manifests = await sender.Send(new GetManifestsQuery(), cancellationToken);
+    return Results.Ok(manifests);
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
