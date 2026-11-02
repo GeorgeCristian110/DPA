@@ -1,6 +1,6 @@
-@DPA.Api_HostAddress = http://localhost:5007
+@host = http://localhost:5007
 
-GET {{DPA.Api_HostAddress}}/weatherforecast/
+GET {{host}}/manifests
 Accept: application/json
 
 ###
